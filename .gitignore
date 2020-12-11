@@ -1,3 +1,7 @@
-**/support-api-env/*
+**/support-api-env/docker-compose.backend.yml
+**/support-api-env/docker-compose.frontend.override.yml
+**/support-api-env/docker-compose.frontend.yml
+**/support-api-env/.*
+
 **/.run.conf
 **/__pycache__/*
