@@ -1,9 +1,11 @@
 import json
 import os
+import stat
+import string
 import sys
 import time
-import stat
 from datetime import datetime
+from random import choice
 
 from helpers.singleton import Singleton
 from helpers.cli import CLI
@@ -98,6 +100,8 @@ class Config(metaclass=Singleton):
         self.__create_directory()
         
         self.__questions_api_port()
+
+        self.__questions_postgres()
         
         self.write_config()
 
@@ -168,6 +172,33 @@ class Config(metaclass=Singleton):
         self.__dict['support_api_port'] = CLI.colored_input('Support API Port?',
                                             CLI.COLOR_QUESTION,
                                             self.__dict['support_api_port'])
+
+    def __questions_postgres(self):
+        """
+        PostgreSQL credentials to be confirmed
+        """
+        #support_db_user = self.__dict['support_db_user']
+        #'support_db_server'
+                
+        CLI.colored_print('Support PostgreSQL database name?',
+                          CLI.COLOR_QUESTION)
+        support_db_name = CLI.get_response(
+            r'~^\w+$',
+            self.__dict['support_db_name'],
+            to_lower=False
+        )
+
+        CLI.colored_print("PostgreSQL user's password?", CLI.COLOR_QUESTION)
+        self.__dict['support_db_password'] = CLI.get_response(
+            r'~^.{8,}$',
+            self.__dict['support_db_password'],
+            to_lower=False,
+            error_msg='Too short. 8 characters minimum.')
+
+
+        self.__dict['support_db_port'] = CLI.colored_input('Support PostgreSQL db Port?',
+                                            CLI.COLOR_QUESTION,
+                                            self.__dict['support_db_port'])
 
     def write_config(self):
         """
@@ -262,15 +293,30 @@ class Config(metaclass=Singleton):
                 '..',
                 'support-api-env'))
             ),
-
-            # 'support_api_path': os.path.realpath(os.path.normpath(os.path.join(
-            #     os.path.dirname(os.path.realpath(__file__)),
-            #     '..',
-            #     '..',
-            #     'kobo-docker'))
-            # ),
+            'support_db_name': 'support',
+            'support_db_user': 'user',
+            'support_db_password': Config.generate_password(),
+            'support_db_port': 5440,
+            'support_db_internal_port': 5432,
+            'support_db_server': 'support-postgres',
+            'support_db_internal_server': 'support-postgres'
         }
-        # Keep properties sorted alphabetically
+
+    @classmethod
+    def generate_password(cls):
+        """
+        Generate 12 characters long random password
+
+        Returns:
+            str
+        """
+        characters = string.ascii_letters \
+                     + '!$%+-_^~@#{}[]()/\'\'`~,;:.<>' \
+                     + string.digits
+        required_chars_count = 12
+
+        return ''.join(choice(characters)
+                       for _ in range(required_chars_count))
 
     @property
     def first_time(self):

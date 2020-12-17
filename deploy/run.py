@@ -19,6 +19,7 @@ def run(force_setup=False):
             force_setup = True
 
         if force_setup:
+
             dict_ = config.build()
             Template.render(config)
             # config.init_letsencrypt()

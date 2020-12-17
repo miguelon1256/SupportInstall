@@ -151,6 +151,13 @@ class Template:
 
         return {
             'SUPPORT_API_PORT': dict_['support_api_port'],
+            'SUPPORT_DB_NAME': dict_['support_db_name'],
+            'SUPPORT_DB_USER': dict_['support_db_user'],
+            'SUPPORT_DB_PASSWORD': dict_['support_db_password'],
+            'SUPPORT_DB_PORT': dict_['support_db_port'],
+            'SUPPORT_DB_INTERNAL_PORT': dict_['support_db_internal_port'],
+            'SUPPORT_DB_SERVER': dict_['support_db_server'],
+            'SUPPORT_DB_INTERNAL_SERVER': dict_['support_db_internal_server'],
         }
 
     @staticmethod

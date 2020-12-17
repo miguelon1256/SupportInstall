@@ -334,23 +334,21 @@ class Command:
         #                           CLI.COLOR_ERROR)
         #         sys.exit(1)
 
-#       # Start the back-end containers
+        # Start the back-end containers
         # if not frontend_only and config.backend:
 
         #     backend_role = dict_['backend_server_role']
 
-        #     backend_command = [
-        #         'docker-compose',
-        #         '-f',
-        #         'docker-compose.backend.{}.yml'.format(backend_role),
-        #         '-f',
-        #         'docker-compose.backend.{}.override.yml'.format(backend_role),
-        #         '-p',
-        #         config.get_prefix('backend'),
-        #         'up',
-        #         '-d'
-        #     ]
-        #     CLI.run_command(backend_command, dict_['kobodocker_path'])
+            backend_command = [
+                'docker-compose',
+                '-f',
+                'docker-compose.db.yml',
+                '-p',
+                config.get_prefix('backend'),
+                'up',
+                '-d'
+            ]
+            CLI.run_command(backend_command, dict_['support_api_path'])
 
         # Start the front-end containers
         # if config.frontend:
@@ -436,18 +434,16 @@ class Command:
             #                     config.get_letsencrypt_repo_path())
 
         # if not frontend_only and config.backend:
-        #     backend_role = dict_['backend_server_role']
+        #backend_role = dict_['backend_server_role']
 
-        #     backend_command = [
-        #         'docker-compose',
-        #         '-f',
-        #         'docker-compose.backend.{}.yml'.format(backend_role),
-        #         '-f',
-        #         'docker-compose.backend.{}.override.yml'.format(backend_role),
-        #         '-p', config.get_prefix('backend'),
-        #         'down'
-        #     ]
-        #     CLI.run_command(backend_command, dict_['kobodocker_path'])
+        backend_command = [
+            'docker-compose',
+            '-f',
+            'docker-compose.db.yml',
+            '-p', config.get_prefix('backend'),
+            'down'
+        ]
+        CLI.run_command(backend_command, dict_['support_api_path'])
 
         if output:
             CLI.colored_print('Support API has been stopped', CLI.COLOR_SUCCESS)
