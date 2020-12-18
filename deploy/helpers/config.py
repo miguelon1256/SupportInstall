@@ -150,8 +150,8 @@ class Config(metaclass=Singleton):
 
     def get_prefix(self, role):
         roles = {
-            'frontend': 'supportfe',
-            'backend': 'supportbe'
+            'frontend': 'support',
+            'backend': 'support'
         }
 
         try:

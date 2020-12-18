@@ -11,17 +11,24 @@ services:
       - "${SUPPORT_DB_PORT}:${SUPPORT_DB_INTERNAL_PORT}"
     volumes:
       - support-postgres-data:/var/lib/postgres
+    networks:
+      - api-network
   
   support-postgres-bootstrap:
-    image: proagenda2030/support_bootstrap:bootstrap.v0.0.10
+    image: proagenda2030/support_bootstrap:latest
     container_name: support-postgres-bootstrap
     restart: 'no'
     depends_on:
       - support-postgres
     env_file:
       - ./database.txt
+    networks:
+      - api-network
     
-
 volumes:
   support-postgres-data:
     driver: local
+
+networks:
+  api-network:
+    driver: bridge
