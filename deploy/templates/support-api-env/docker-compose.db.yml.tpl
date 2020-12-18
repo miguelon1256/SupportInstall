@@ -13,7 +13,7 @@ services:
       - support-postgres-data:/var/lib/postgres
   
   support-postgres-bootstrap:
-    image: proagenda2030/support_bootstrap:bootstrap.v0.0.7
+    image: proagenda2030/support_bootstrap:bootstrap.v0.0.10
     container_name: support-postgres-bootstrap
     restart: 'no'
     depends_on:
