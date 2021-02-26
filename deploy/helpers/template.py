@@ -158,6 +158,11 @@ class Template:
             'SUPPORT_DB_INTERNAL_PORT': dict_['support_db_internal_port'],
             'SUPPORT_DB_SERVER': dict_['support_db_server'],
             'SUPPORT_DB_INTERNAL_SERVER': dict_['support_db_internal_server'],
+            'KOBO_DB_SERVER': dict_['kobo_db_server'],
+            'KOBO_DB_PORT': dict_['kobo_db_port'],
+            'KOBO_DB_NAME': dict_['kobo_db_name'],
+            'KOBO_DB_USER': dict_['kobo_db_user'],
+            'KOBO_DB_PASSWORD': dict_['kobo_db_password']
         }
 
     @staticmethod

@@ -102,6 +102,8 @@ class Config(metaclass=Singleton):
         self.__questions_api_port()
 
         self.__questions_postgres()
+
+        self.__questions_kobo_postgres()
         
         self.write_config()
 
@@ -200,6 +202,38 @@ class Config(metaclass=Singleton):
                                             CLI.COLOR_QUESTION,
                                             self.__dict['support_db_port'])
 
+    def __questions_kobo_postgres(self):
+        """
+        KoBoToolbox's credentials
+        """
+        # kobo_db_server
+        self.__dict['kobo_db_server'] = CLI.colored_input('KoBoToolbox PostgreSQL server?',
+                                            CLI.COLOR_QUESTION,
+                                            self.__dict['kobo_db_server'])
+        
+        # kobo_db_name
+        CLI.colored_print('KoBoToolbox PostgreSQL database name?',
+                          CLI.COLOR_QUESTION)
+        self.__dict['kobo_db_name'] = CLI.get_response(
+            r'~^\w+$',
+            self.__dict['kobo_db_name'],
+            to_lower=False
+        )
+
+        # kobo_db_port
+        self.__dict['kobo_db_port'] = CLI.colored_input('KoBoToolbox PostgreSQL Port?',
+                                            CLI.COLOR_QUESTION,
+                                            self.__dict['kobo_db_port'])
+        # kobo_db_user
+        self.__dict['kobo_db_user'] = CLI.colored_input('KoBoToolbox PostgreSQL db User?',
+                                            CLI.COLOR_QUESTION,
+                                            self.__dict['kobo_db_user'])
+
+        # kobo_db_password
+        self.__dict['kobo_db_password'] = CLI.colored_input('KoBoToolbox PostgreSQL db Password?',
+                                            CLI.COLOR_QUESTION,
+                                            self.__dict['kobo_db_password'])
+    
     def write_config(self):
         """
         Writes config to file `Config.CONFIG_FILE`.
@@ -299,7 +333,12 @@ class Config(metaclass=Singleton):
             'support_db_port': 5440,
             'support_db_internal_port': 5432,
             'support_db_server': 'support-postgres',
-            'support_db_internal_server': 'support-postgres'
+            'support_db_internal_server': 'support-postgres',
+            'kobo_db_server': '127.0.0.1',
+            'kobo_db_port': '5432',
+            'kobo_db_name': 'koboform',
+            'kobo_db_user': 'kobo',
+            'kobo_db_password': ''
         }
 
     @classmethod
