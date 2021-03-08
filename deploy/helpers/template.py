@@ -162,7 +162,8 @@ class Template:
             'KOBO_DB_PORT': dict_['kobo_db_port'],
             'KOBO_DB_NAME': dict_['kobo_db_name'],
             'KOBO_DB_USER': dict_['kobo_db_user'],
-            'KOBO_DB_PASSWORD': dict_['kobo_db_password']
+            'KOBO_DB_PASSWORD': dict_['kobo_db_password'],
+            'KOBO_API_URI': dict_['kobo_api_uri']
         }
 
     @staticmethod

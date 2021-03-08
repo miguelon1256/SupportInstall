@@ -105,6 +105,8 @@ class Config(metaclass=Singleton):
 
         self.__questions_kobo_postgres()
         
+        self.__questions_kobo_api()
+
         self.write_config()
 
         return self.__dict
@@ -233,7 +235,16 @@ class Config(metaclass=Singleton):
         self.__dict['kobo_db_password'] = CLI.colored_input('KoBoToolbox PostgreSQL db Password?',
                                             CLI.COLOR_QUESTION,
                                             self.__dict['kobo_db_password'])
-    
+
+    def __questions_kobo_api(self):
+        """
+        KoBoToolbox's API
+        """
+        # kobo_api_uri
+        self.__dict['kobo_api_uri'] = CLI.colored_input('KoBoToolbox KPI Uri?',
+                                            CLI.COLOR_QUESTION,
+                                            self.__dict['kobo_api_uri'])
+            
     def write_config(self):
         """
         Writes config to file `Config.CONFIG_FILE`.
@@ -338,7 +349,8 @@ class Config(metaclass=Singleton):
             'kobo_db_port': '5432',
             'kobo_db_name': 'koboform',
             'kobo_db_user': 'kobo',
-            'kobo_db_password': ''
+            'kobo_db_password': '',
+            'kobo_api_uri': '',
         }
 
     @classmethod
