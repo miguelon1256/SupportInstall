@@ -213,8 +213,8 @@ class Config(metaclass=Singleton):
                                             CLI.COLOR_QUESTION,
                                             self.__dict['kobo_db_server'])
         
-        # kobo_db_name
-        CLI.colored_print('KoBoToolbox PostgreSQL database name?',
+        # kobo_db_name - Kobo Form
+        CLI.colored_print('KoBoToolbox\'s KoboFORM PostgreSQL database name?',
                           CLI.COLOR_QUESTION)
         self.__dict['kobo_db_name'] = CLI.get_response(
             r'~^\w+$',
@@ -222,17 +222,26 @@ class Config(metaclass=Singleton):
             to_lower=False
         )
 
+        # kobo_cat_db_name - Kobo Form
+        CLI.colored_print('KoBoToolbox\'s KoboCAT PostgreSQL database name?',
+                          CLI.COLOR_QUESTION)
+        self.__dict['kobo_cat_db_name'] = CLI.get_response(
+            r'~^\w+$',
+            self.__dict['kobo_cat_db_name'],
+            to_lower=False
+        )
+        
         # kobo_db_port
         self.__dict['kobo_db_port'] = CLI.colored_input('KoBoToolbox PostgreSQL Port?',
                                             CLI.COLOR_QUESTION,
                                             self.__dict['kobo_db_port'])
         # kobo_db_user
-        self.__dict['kobo_db_user'] = CLI.colored_input('KoBoToolbox PostgreSQL db User?',
+        self.__dict['kobo_db_user'] = CLI.colored_input('KoBoToolbox PostgreSQL User?',
                                             CLI.COLOR_QUESTION,
                                             self.__dict['kobo_db_user'])
 
         # kobo_db_password
-        self.__dict['kobo_db_password'] = CLI.colored_input('KoBoToolbox PostgreSQL db Password?',
+        self.__dict['kobo_db_password'] = CLI.colored_input('KoBoToolbox PostgreSQL Password?',
                                             CLI.COLOR_QUESTION,
                                             self.__dict['kobo_db_password'])
 
@@ -348,6 +357,7 @@ class Config(metaclass=Singleton):
             'kobo_db_server': '127.0.0.1',
             'kobo_db_port': '5432',
             'kobo_db_name': 'koboform',
+            'kobo_cat_db_name': 'kobocat',
             'kobo_db_user': 'kobo',
             'kobo_db_password': '',
             'kobo_api_uri': '',
