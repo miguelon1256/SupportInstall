@@ -8,6 +8,7 @@ from helpers.singleton import Singleton
 from helpers.cli import CLI
 from helpers.template import Template
 from helpers.command import Command
+from helpers.support import Support
 
 def run(force_setup=False):
     if not platform.system() in ['Linux', 'Darwin']:
@@ -19,11 +20,14 @@ def run(force_setup=False):
             force_setup = True
 
         if force_setup:
-
             dict_ = config.build()
             Template.render(config)
-            # config.init_letsencrypt()
-            # Setup.update_hosts(dict_)
+            
+            support = Support()
+            support.copy_support_scripts()
+            
+            # # config.init_letsencrypt()
+            # # Setup.update_hosts(dict_)
         else:
             print ("Running smoothly")
             # if config.auto_detect_network():

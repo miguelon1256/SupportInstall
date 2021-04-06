@@ -3,6 +3,7 @@
 import sys
 import time
 import subprocess
+import shutil
 
 from helpers.cli import CLI
 from helpers.config import Config
@@ -372,6 +373,14 @@ class Command:
             
             CLI.run_command(frontend_command, dict_['support_api_path'])
 
+
+            # Start Dashboards container
+            frontend_command = ['docker-compose',
+                                '-f', 'docker-compose.shiny.yml',
+                                '-p', config.get_prefix('dashboards'),
+                                'up', '-d']
+            CLI.run_command(frontend_command, dict_['support_api_path'])
+
             # # Start reverse proxy if user uses it.
             # if config.use_letsencrypt:
             #     proxy_command = ['docker-compose',
@@ -425,6 +434,13 @@ class Command:
                                 '-p', config.get_prefix('frontend'),
                                 'down']
             CLI.run_command(frontend_command, dict_['support_api_path'])
+
+            # Shutdown Dashboards container
+            dashboards_command = ['docker-compose',
+                                '-f', 'docker-compose.shiny.yml',
+                                '-p', config.get_prefix('dashboards'),
+                                'down']
+            CLI.run_command(dashboards_command, dict_['support_api_path'])
 
             # # Stop reverse proxy if user uses it.
             # if config.use_letsencrypt:
@@ -491,3 +507,4 @@ class Command:
     #         Config.KOBO_INSTALL_VERSION,
     #         stdout.strip()[0:7],
     #     ), CLI.COLOR_SUCCESS)
+    

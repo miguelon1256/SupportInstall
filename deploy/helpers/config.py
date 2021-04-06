@@ -155,7 +155,8 @@ class Config(metaclass=Singleton):
     def get_prefix(self, role):
         roles = {
             'frontend': 'support',
-            'backend': 'support'
+            'backend': 'support',
+            'dashboards': 'support'
         }
 
         try:
