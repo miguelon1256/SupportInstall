@@ -2,7 +2,7 @@ version: '3'
 
 services:
   support-api:
-    image: proagenda2030/support_api:pa.v0.6.1
+    image: proagenda2030/support_api:pa.v1.0.0
     hostname: support_api
     container_name: support_api
     restart: unless-stopped
