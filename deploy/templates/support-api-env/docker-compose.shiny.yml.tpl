@@ -9,7 +9,7 @@ services:
     # environment:
     #   - APPLICATION_LOGS_TO_STDOUT=false
     ports:
-      - '3838:3838'
+      - '${DASHBOARDS_PORT}:3838'
     command: "bash /shiny-scripts/entrypoint.sh"
     restart: always
     volumes:
@@ -21,6 +21,7 @@ services:
       - ./shiny-scripts:/shiny-scripts
     env_file:
       - ./database.txt
+      - ./dashboards.txt
       
 volumes:
   shiny_logs:

@@ -107,6 +107,8 @@ class Config(metaclass=Singleton):
         
         self.__questions_kobo_api()
 
+        self.__questions_dashboards()
+
         self.write_config()
 
         return self.__dict
@@ -255,6 +257,20 @@ class Config(metaclass=Singleton):
                                             CLI.COLOR_QUESTION,
                                             self.__dict['kobo_api_uri'])
             
+    def __questions_dashboards(self):
+        """
+        Dashboards questions
+        """
+        # dashboards_port
+        self.__dict['dashboards_port'] = CLI.colored_input('Dashboards Port?',
+                                            CLI.COLOR_QUESTION,
+                                            self.__dict['dashboards_port'])
+
+        # dashboards_kobo_token
+        self.__dict['dashboards_kobo_token'] = CLI.colored_input('KoBoToolbox Access Token',
+                                            CLI.COLOR_QUESTION,
+                                            self.__dict['dashboards_kobo_token'])
+
     def write_config(self):
         """
         Writes config to file `Config.CONFIG_FILE`.
@@ -361,7 +377,9 @@ class Config(metaclass=Singleton):
             'kobo_cat_db_name': 'kobocat',
             'kobo_db_user': 'kobo',
             'kobo_db_password': '',
-            'kobo_api_uri': '',
+            'kobo_api_uri': 'https://kf.myserver.com',
+            'dashboards_port': '3838',
+            'dashboards_kobo_token': ''
         }
 
     @classmethod

@@ -67,29 +67,6 @@ class Template:
                                   destination_directory,
                                   filenames)
 
-        # # kobo-docker
-        # templates_path = os.path.join(templates_path_parent, 'kobo-docker')
-        # for root, dirnames, filenames in os.walk(templates_path):
-        #     destination_directory = dict_['kobodocker_path']
-        #     cls.__write_templates(template_variables,
-        #                           root,
-        #                           destination_directory,
-        #                           filenames)
-
-        # # # nginx-certbox
-        # # if config.use_letsencrypt:
-        # #     templates_path = os.path.join(templates_path_parent,
-        # #                                   Config.LETSENCRYPT_DOCKER_DIR, '')
-        # #     for root, dirnames, filenames in os.walk(templates_path):
-        # #         destination_directory = cls.__create_directory(
-        # #             config.get_letsencrypt_repo_path(),
-        # #             root,
-        # #             templates_path)
-        # #         cls.__write_templates(template_variables,
-        # #                               root,
-        # #                               destination_directory,
-        # #                               filenames)
-
     @classmethod
     def render_maintenance(cls, config):
 
@@ -164,7 +141,9 @@ class Template:
             'KOBO_CAT_DB_NAME': dict_['kobo_cat_db_name'],
             'KOBO_DB_USER': dict_['kobo_db_user'],
             'KOBO_DB_PASSWORD': dict_['kobo_db_password'],
-            'KOBO_API_URI': dict_['kobo_api_uri']
+            'KOBO_API_URI': dict_['kobo_api_uri'],
+            'DASHBOARDS_PORT': dict_['dashboards_port'],
+            'DASHBOARDS_KOBO_TOKEN': dict_['dashboards_kobo_token']
         }
 
     @staticmethod

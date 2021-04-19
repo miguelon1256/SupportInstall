@@ -3,8 +3,9 @@
 set -e
 echo "Registering Cron expression"
 # Send backup installation process in background to avoid blocking PostgreSQL startup
-pwd
 bash ./shiny-scripts/register-cron.sh 
+
+bash ./shiny-scripts/create-renviron-file.sh
 
 echo "Launching official entrypoint..."
 # `exec` here is important to pass signals to the database server process;
