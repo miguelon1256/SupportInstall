@@ -11,6 +11,7 @@ services:
       - "${SUPPORT_DB_PORT}:${SUPPORT_DB_INTERNAL_PORT}"
     volumes:
       - support-postgres-data:/var/lib/postgres
+      - ./postgres-scripts:/postgres-scripts
     networks:
       - api-network
   
@@ -22,6 +23,20 @@ services:
       - support-postgres
     env_file:
       - ./database.txt
+    networks:
+      - api-network
+
+  support-postgres-backup:
+    image: proagenda2030/support_postgres_backup:latest
+    container_name: support-postgres-backup
+    restart: unless-stopped
+    env_file: 
+      - ./database.txt
+      - ./aws.txt
+    volumes:
+      - support-postgres-data:/var/lib/postgres
+      - ./postgres-scripts:/postgres-scripts
+    command: "bash ./postgres-scripts/entrypoint.sh"
     networks:
       - api-network
     
