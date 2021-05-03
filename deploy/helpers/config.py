@@ -550,7 +550,7 @@ class Config(metaclass=Singleton):
             'kobo_db_password': '',
             'kobo_api_uri': 'https://kf.myserver.com',
             'dashboards_port': '3838',
-            'dashboards_kobo_token': ''
+            'dashboards_kobo_token': '',
             'use_backup': False,
             'use_aws': False,
             'aws_credentials_valid': False,
