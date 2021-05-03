@@ -162,7 +162,8 @@ class Template:
             'AWS_BACKUP_UPLOAD_CHUNK_SIZE': dict_['aws_backup_upload_chunk_size'],
             
             'DASHBOARDS_PORT': dict_['dashboards_port'],
-            'DASHBOARDS_KOBO_TOKEN': dict_['dashboards_kobo_token']
+            'DASHBOARDS_KOBO_TOKEN': dict_['dashboards_kobo_token'],
+            'DASHBOARDS_CRON_SCHEDULE': dict_['dashboards_cron_schedule']
         }
 
     @staticmethod

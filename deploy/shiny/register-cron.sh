@@ -8,12 +8,13 @@ if [ ! -d /var/log/shiny-server/ ]; then
     mkdir -p /var/log/shiny-server/
 fi
 
-CRON_CMD="*/20 * * * *  root  bash /shiny-scripts/poll.sh > /var/log/shiny-server/poll.log 2>&1 "
+CRON_CMD="${DASHBOARDS_CRON_SCHEDULE} root  bash /shiny-scripts/poll.sh > /var/log/shiny-server/poll.log 2>&1 "
 
 echo $CRON_CMD >> /etc/cron.d/update_shiny_files
 echo "" >> /etc/cron.d/update_shiny_files
 service cron restart
 echo "Crontab job to poll shiny dashboards set at: /etc/cron.d/update_shiny_files"
+service cron status
 
 echo "Executing immediately: /shiny-scripts/poll.sh"
 bash /shiny-scripts/poll.sh

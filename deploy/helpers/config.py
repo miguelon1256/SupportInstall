@@ -307,6 +307,17 @@ class Config(metaclass=Singleton):
                                             CLI.COLOR_QUESTION,
                                             self.__dict['dashboards_kobo_token'])
 
+        schedule_regex_pattern = (
+                r'^((((\d+(,\d+)*)|(\d+-\d+)|(\*(\/\d+)?)))'
+                r'(\s+(((\d+(,\d+)*)|(\d+\-\d+)|(\*(\/\d+)?)))){4})$')
+
+        CLI.colored_print('Dashboards Github Poll cron expression?',
+                                CLI.COLOR_QUESTION)
+        self.__dict[
+                'dashboards_cron_schedule'] = CLI.get_response(
+                '~{}'.format(schedule_regex_pattern),
+                self.__dict['dashboards_cron_schedule'])
+
     def write_config(self):
         """
         Writes config to file `Config.CONFIG_FILE`.
@@ -551,6 +562,7 @@ class Config(metaclass=Singleton):
             'kobo_api_uri': 'https://kf.myserver.com',
             'dashboards_port': '3838',
             'dashboards_kobo_token': '',
+            'dashboards_cron_schedule': '*/21 * * * *',
             'use_backup': False,
             'use_aws': False,
             'aws_credentials_valid': False,
