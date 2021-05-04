@@ -84,14 +84,15 @@ class Command:
                                 'down']
             CLI.run_command(dashboards_command, dict_['support_api_path'])
 
-        backend_command = [
-            'docker-compose',
-            '-f',
-            'docker-compose.db.yml',
-            '-p', config.get_prefix('backend'),
-            'down'
-        ]
-        CLI.run_command(backend_command, dict_['support_api_path'])
+            # Shutdown Database related containers
+            backend_command = [
+                'docker-compose',
+                '-f',
+                'docker-compose.db.yml',
+                '-p', config.get_prefix('backend'),
+                'down'
+            ]
+            CLI.run_command(backend_command, dict_['support_api_path'])
 
         if output:
             CLI.colored_print('Support API has been stopped', CLI.COLOR_SUCCESS)

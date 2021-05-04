@@ -10,21 +10,23 @@ services:
     ports:
       - "${SUPPORT_DB_PORT}:${SUPPORT_DB_INTERNAL_PORT}"
     volumes:
-      - support-postgres-data:/var/lib/postgres
+      - 'support-postgres-data:/var/lib/postgresql/data'
       - ./postgres-scripts:/postgres-scripts
     networks:
       - api-network
   
-  support-postgres-bootstrap:
-    image: proagenda2030/support_bootstrap:latest
-    container_name: support-postgres-bootstrap
-    restart: 'no'
-    depends_on:
-      - support-postgres
-    env_file:
-      - ./database.txt
-    networks:
-      - api-network
+  # Comentado en favor de Seed
+  # support-postgres-bootstrap:
+  #   #image: proagenda2030/support_bootstrap:latest
+  #   image: local/support_bootstrap:latest
+  #   container_name: support-postgres-bootstrap
+  #   restart: 'no'
+  #   depends_on:
+  #     - support-postgres
+  #   env_file:
+  #     - ./database.txt
+  #   networks:
+  #     - api-network
 
   support-postgres-backup:
     image: proagenda2030/support_postgres_backup:latest
@@ -34,7 +36,6 @@ services:
       - ./database.txt
       - ./aws.txt
     volumes:
-      - support-postgres-data:/var/lib/postgres
       - ./postgres-scripts:/postgres-scripts
     command: "bash ./postgres-scripts/entrypoint.sh"
     networks:
