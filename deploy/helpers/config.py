@@ -562,7 +562,7 @@ class Config(metaclass=Singleton):
             'kobo_api_uri': 'https://kf.myserver.com',
             'dashboards_port': '3838',
             'dashboards_kobo_token': '',
-            'dashboards_cron_schedule': '*/21 * * * *',
+            'dashboards_cron_schedule': '0 * * * 7',
             'use_backup': False,
             'use_aws': False,
             'aws_credentials_valid': False,
