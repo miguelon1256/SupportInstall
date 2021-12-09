@@ -4,7 +4,7 @@ set -e
 echo $(date)
 echo "Executing clone of shiny dashboards"
 rm -rf /tmp/dashboards-shiny
-git clone -b main --depth 1 https://github.com/NexionBolivia/dashboards-shiny.git /tmp/dashboards-shiny
+git clone -b main --depth 1 https://github.com/kobo-ProAgenda2030/dashboards-shiny.git /tmp/dashboards-shiny
 
 echo "Now copyng to location..."
 # Removing any previous shiny-server-new directory
