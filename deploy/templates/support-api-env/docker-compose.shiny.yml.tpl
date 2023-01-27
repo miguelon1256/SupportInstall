@@ -10,6 +10,8 @@ services:
     #   - APPLICATION_LOGS_TO_STDOUT=false
     ports:
       - '${DASHBOARDS_PORT}:3838'
+    extra_hosts:
+      - "kf.mi-entidad.gob.bo kc.mi-entidad.gob.bo ee.mi-entidad.gob.bo:192.168.56.102"
     command: "bash /shiny-scripts/entrypoint.sh"
     restart: always
     volumes:
