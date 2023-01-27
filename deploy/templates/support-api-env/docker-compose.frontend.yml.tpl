@@ -6,7 +6,7 @@ services:
     hostname: support_api
     container_name: support_api
     extra_hosts:
-      - "kf.mi-entidad.gob.bo kc.mi-entidad.gob.bo ee.mi-entidad.gob.bo:192.168.5.151"
+      - "kf.prias.mmaya.gob.bo kc.prias.mmaya.gob.bo ee.prias.mmaya.gob.bo:192.168.5.151"
     restart: unless-stopped
     env_file:
       - ./database.txt
