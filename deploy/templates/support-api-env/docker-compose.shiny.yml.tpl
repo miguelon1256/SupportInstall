@@ -11,7 +11,7 @@ services:
     ports:
       - '${DASHBOARDS_PORT}:3838'
     extra_hosts:
-      - "kf.prias.mmaya.gob.bo kc.prias.mmaya.gob.bo ee.prias.mmaya.gob.bo:192.168.5.151"
+      - "kf.mmaya.gob.bo kc.mmaya.gob.bo ee.mmaya.gob.bo:192.168.5.151"
     command: "bash /shiny-scripts/entrypoint.sh"
     restart: always
     volumes:
